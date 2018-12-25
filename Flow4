@@ -1,0 +1,101 @@
+[
+    {
+        "id": "99406db1.ebb48",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1abf7274.0cf482",
+        "type": "http in",
+        "z": "99406db1.ebb48",
+        "name": "",
+        "url": "/data",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 180,
+        "wires": [
+            [
+                "72afc134.c0c0c4"
+            ]
+        ]
+    },
+    {
+        "id": "f40f02cc.5b17a8",
+        "type": "http response",
+        "z": "99406db1.ebb48",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "4235303a.060fd",
+        "type": "debug",
+        "z": "99406db1.ebb48",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 670,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "2e3a3918.65640e",
+        "type": "rpi-gpio in",
+        "z": "99406db1.ebb48",
+        "name": "GPIO4",
+        "pin": "7",
+        "intype": "up",
+        "debounce": "25",
+        "read": true,
+        "x": 90,
+        "y": 340,
+        "wires": [
+            [
+                "87e63990.42f2f8"
+            ]
+        ]
+    },
+    {
+        "id": "87e63990.42f2f8",
+        "type": "function",
+        "z": "99406db1.ebb48",
+        "name": "Set GPIO",
+        "func": "global.set(\"GPIO\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 240,
+        "y": 300,
+        "wires": [
+            [
+                "4235303a.060fd"
+            ]
+        ]
+    },
+    {
+        "id": "72afc134.c0c0c4",
+        "type": "function",
+        "z": "99406db1.ebb48",
+        "name": "Get GPIO",
+        "func": "msg.payload = global.get(\"GPIO\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 240,
+        "y": 180,
+        "wires": [
+            [
+                "f40f02cc.5b17a8",
+                "4235303a.060fd"
+            ]
+        ]
+    }
+]

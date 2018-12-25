@@ -1,0 +1,107 @@
+[
+    {
+        "id": "6f2ae472.65e9a8",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c8c9a5ab.b8ee6",
+        "type": "inject",
+        "z": "6f2ae472.65e9a8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "f626c412.26c488"
+            ]
+        ]
+    },
+    {
+        "id": "f626c412.26c488",
+        "type": "function",
+        "z": "6f2ae472.65e9a8",
+        "name": "payload",
+        "func": "msg.headers={\n    deviceKey: \"0vVdmU5EqPAyudY4\"\n    };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "c3a0b487.4877f",
+                "c04c95f9.cd7218"
+            ]
+        ]
+    },
+    {
+        "id": "c3a0b487.4877f",
+        "type": "http request",
+        "z": "6f2ae472.65e9a8",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/DUhhcAgB/datachannels/temperature/datapoints.csv",
+        "tls": "",
+        "x": 550,
+        "y": 180,
+        "wires": [
+            [
+                "1c235373.362dad",
+                "747abfaa.691c04"
+            ]
+        ]
+    },
+    {
+        "id": "c04c95f9.cd7218",
+        "type": "http request",
+        "z": "6f2ae472.65e9a8",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/DUhhcAgB/datachannels/Humidity/datapoints.csv",
+        "tls": "",
+        "x": 510,
+        "y": 320,
+        "wires": [
+            [
+                "1c235373.362dad",
+                "747abfaa.691c04"
+            ]
+        ]
+    },
+    {
+        "id": "1c235373.362dad",
+        "type": "http response",
+        "z": "6f2ae472.65e9a8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "747abfaa.691c04",
+        "type": "debug",
+        "z": "6f2ae472.65e9a8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 770,
+        "y": 340,
+        "wires": []
+    }
+]
